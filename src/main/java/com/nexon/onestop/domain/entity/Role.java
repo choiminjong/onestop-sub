@@ -1,0 +1,27 @@
+package com.nexon.onestop.domain.entity;
+
+import lombok.*;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Data
+@Builder
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Role {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String roleName;
+
+    private String roleDesc;
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "userRoles")
+    private Set<Account> user = new HashSet<>();
+
+}
