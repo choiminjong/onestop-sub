@@ -1,4 +1,4 @@
-package com.nexon.onestop.controller.view.api;
+package com.nexon.onestop.controller.api;
 
 import com.nexon.onestop.domain.dto.ResponseDto;
 import com.nexon.onestop.domain.entity.Account;

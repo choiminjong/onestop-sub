@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/header::userHead"></head>
+<body>
+<div th:replace="layout/top::header"></div>
+<div class="container">
+    <div class="row align-items-start">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <div style="padding-top:10px;" class="nav flex-column nav-pills" aria-orientation="vertical">
+                            <a th:href="@{/admin/accounts}" style="margin:5px;" class="nav-link">사용자 관리</a>
+                            <a th:href="@{/admin/roles}" style="margin:5px;" class="nav-link active">권한 관리</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div style="padding-top:50px;" class="col">
+            <div class="container text-center">
+                <div class="tbl_wrp">
+                    <table class="table">
+                        <thead>
+                        <tr class="table-info">
+                            <th scope="col">권한명</th>
+                            <th scope="col">권한설명</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="link_btn hover" th:each="role : ${roles}">
+
+                            <td style="text-align: center;">
+                                <a th:href="@{'/admin/roles/' + ${role.id}}"><span th:text="${role.roleName}">회원</span></a>
+                            </td>
+                            <td style="text-align: center;" th:text="${role.roleDesc}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div style="text-align:right;">
+                        <p><a class="btn btn-dark btn-lg" style="margin:10;" th:href="@{/admin/roles/register}">권한 등록</a></p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="layout/footer::footer"></div>
+</body>
+</html>
