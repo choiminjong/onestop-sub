@@ -20,16 +20,6 @@ public class Delegate {
     private Long id;
 
     @Column(nullable = false)
-    private String groups;
-
-    @OneToMany(mappedBy = "delegate" ,fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)  //mappedBy 연관관계의 주인이 아니다(FK가 아니다) DB컬럼에 만들지 않아도된다. 명시
-    @JsonIgnoreProperties({"delegate"})
-    @OrderBy("id desc")
-    private List<DelegateUser> delegateUsers;
-
-    @ManyToOne(fetch = FetchType.EAGER )
-    @JoinColumn(name="accoutId")
-    private Account account;
-
+    private String groupName;
 
 }

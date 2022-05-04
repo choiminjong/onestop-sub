@@ -26,7 +26,6 @@ public class UserManagerController {
     public String getUsers(Model model) throws Exception {
 
         List<Account> accounts = userServiceImpl.getUsers();
-        System.out.println("accounts = " + accounts);
         model.addAttribute("accounts", accounts);
 
         return "admin/user/list";

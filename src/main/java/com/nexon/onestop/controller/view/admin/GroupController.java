@@ -12,7 +12,7 @@ public class GroupController {
 
     @GetMapping(value="/admin/groups")
     public String getGroups(Model model) throws Exception {
-        return "admin/group/list";
-    }
 
+        return "admin/role/list";
+    }
 }

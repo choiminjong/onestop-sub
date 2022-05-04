@@ -1,5 +1,6 @@
 package com.nexon.onestop.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,18 +9,20 @@ import javax.persistence.*;
 @Data
 @Builder
 @AllArgsConstructor
+@ToString(exclude = {"delegate"})
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DelegateUser {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne                   // 하나의 게시글에 여러개의댓글을 가질수 있다.
-    @JoinColumn(name="delegateId")
-    private Delegate delegate;
+    @Column(nullable = false)
+    private String username;
 
-    @ManyToOne            // 하나의 유저는 여러개 댓글을 작성할 수 있따.
-    @JoinColumn(name="accoutId")
-    private Account account;
+    @ManyToOne(fetch = FetchType.EAGER )        // Many=board , User=One
+    @JoinColumn(name="delegateId")              // board 테이블에 User 테이블을 참조할 수 있는 FOREIGN KEY 자동으로 생성된다.
+    private Delegate delegate;                  // DB는 오브젝트를 저장할 수 없다.FK,자바는 오브젝트를 저장할 수 있다.
+
 }
