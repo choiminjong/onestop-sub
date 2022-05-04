@@ -8,6 +8,8 @@ async function joinForm(){
         email : document.querySelector('#email').value
     }
 
+    console.log(data);
+
     let url = "/auth/join"
     let response = await fetch(url, {
         method: 'POST',
