@@ -35,9 +35,6 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(accountContext.getAccount(), null,accountContext.getAuthorities());
 
-        //시큐리티 토큰 발급
-        System.out.println("authenticationToken = " + authenticationToken);
-
         return authenticationToken;
     }
 

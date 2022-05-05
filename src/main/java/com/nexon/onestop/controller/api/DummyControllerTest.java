@@ -5,7 +5,6 @@ import com.nexon.onestop.repository.DelegateRepository;
 import com.nexon.onestop.repository.DelegateUserRepository;
 import com.nexon.onestop.repository.MemberRepository;
 import com.nexon.onestop.repository.TeamRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
