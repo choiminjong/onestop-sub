@@ -6,12 +6,8 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Data
-@Builder
-@AllArgsConstructor
-@ToString(exclude = {"delegate"})
-@EqualsAndHashCode(of = "id")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
+@NoArgsConstructor
 public class DelegateUser {
 
     @Id
@@ -21,8 +17,13 @@ public class DelegateUser {
     @Column(nullable = false)
     private String username;
 
-    @ManyToOne(fetch = FetchType.EAGER )        // Many=board , User=One
-    @JoinColumn(name="delegateId")              // board 테이블에 User 테이블을 참조할 수 있는 FOREIGN KEY 자동으로 생성된다.
-    private Delegate delegate;                  // DB는 오브젝트를 저장할 수 없다.FK,자바는 오브젝트를 저장할 수 있다.
+    @ManyToOne
+    @JoinColumn(name= "DELEGATEID")
+    private Delegate delegate;
 
+    @Builder
+    private DelegateUser(String username, Delegate delegate) {
+        this.username = username;
+        this.delegate = delegate;
+    }
 }

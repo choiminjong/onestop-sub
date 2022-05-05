@@ -5,21 +5,30 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Data
-@Builder
 @AllArgsConstructor
+@NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Delegate {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String groupName;
+    @Column(nullable = false, unique = true)
+    private String groupname;
 
+    @OneToMany(mappedBy = "delegate")
+    @JsonIgnoreProperties({"delegate"})
+    private List<DelegateUser> delegateUsers = new ArrayList<>();
+
+    @Builder
+    private Delegate(String groupname) {
+        this.groupname = groupname;
+    }
 }
+
+

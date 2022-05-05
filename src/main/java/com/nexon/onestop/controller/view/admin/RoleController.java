@@ -26,7 +26,6 @@ public class RoleController {
 
         List<Role> roles = roleServiceImpl.getRoles();
         model.addAttribute("roles", roles);
-
         return "admin/role/list";
     }
 
@@ -35,7 +34,6 @@ public class RoleController {
 
         RoleDto role = new RoleDto();
         model.addAttribute("role", role);
-
         return "admin/role/detail";
     }
 

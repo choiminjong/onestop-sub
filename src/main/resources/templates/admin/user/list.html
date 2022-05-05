@@ -3,22 +3,13 @@
 <head th:replace="layout/header::userHead"></head>
 <body>
 <div th:replace="layout/top::header"></div>
+
 <div class="container">
     <div class="row align-items-start">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-            <div class="sidebar-sticky">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <div style="padding-top:10px;" class="nav flex-column nav-pills" aria-orientation="vertical">
-                            <a th:href="@{/admin/accounts}" style="margin:5px;" class="nav-link active">사용자 관리</a>
-                            <a th:href="@{/admin/roles}" style="margin:5px;" class="nav-link">권한 관리</a>
-                            <a th:href="@{/admin/groups}" style="margin:5px;" class="nav-link ">그룹 관리</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div style="padding-top:50px;"  class="col">
+
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar" th:replace="layout/adminmenu::menu('accounts')"></nav>
+
+        <div style="padding-top:50px;" class="col">
             <div class="container text-center">
                 <div class="tbl_wrp">
                     <table class="table">
@@ -49,6 +40,7 @@
         </div>
     </div>
 </div>
+
 <div th:replace="layout/footer::footer"></div>
 </body>
 </html>
