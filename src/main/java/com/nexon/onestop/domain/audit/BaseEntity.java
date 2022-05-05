@@ -1,4 +1,4 @@
-package com.nexon.onestop.domain.entity;
+package com.nexon.onestop.domain.audit;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedBy;

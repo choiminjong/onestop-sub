@@ -1,5 +1,6 @@
 package com.nexon.onestop.domain.entity;
 
+import com.nexon.onestop.domain.audit.BaseTimeEntity;
 import lombok.*;
 import javax.persistence.*;
 import java.util.HashSet;
