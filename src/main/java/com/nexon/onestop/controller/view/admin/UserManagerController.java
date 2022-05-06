@@ -45,9 +45,6 @@ public class UserManagerController {
         AccountDto accountDto = userServiceImpl.getUser(id);
         List<Role> roleList = roleServiceImpl.getRoles();
 
-        System.out.println("AccountDto E@@@ = " + accountDto);
-        System.out.println("roleList E@@@ = " + roleList);
-
         model.addAttribute("account", accountDto);
         model.addAttribute("roleList", roleList);
 

@@ -3,12 +3,14 @@ package com.nexon.onestop.domain.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class Resources {
 
     @Id
@@ -22,4 +24,11 @@ public class Resources {
     private int orderNum;
 
     private String resourceType;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "role_resources", joinColumns = {
+            @JoinColumn(name = "resource_id") },
+            inverseJoinColumns = { @JoinColumn(name = "role_id") })
+    private Set<Role> roleSet = new HashSet<>();
+
 }
