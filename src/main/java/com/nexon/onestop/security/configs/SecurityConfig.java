@@ -46,7 +46,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean(); // 시큐리티 인증 처리시 필요
     }
 
-
     /*
       로그인을 요청을하면  시큐리티에서 password 가로챕니다.
       password 확인 후 암호화 후 DB 패스워드를 비교합니다.
@@ -138,6 +137,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private List<AccessDecisionVoter<?>> getAccessDecistionVoters() {
         return Arrays.asList(new RoleVoter());
     }
-
-
 }

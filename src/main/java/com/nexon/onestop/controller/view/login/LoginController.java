@@ -2,6 +2,7 @@ package com.nexon.onestop.controller.view.login;
 
 import com.nexon.onestop.domain.entity.Account;
 import com.nexon.onestop.service.impl.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,15 +20,10 @@ import java.security.Principal;
 @Controller
 public class LoginController {
 
-    private UserServiceImpl userServiceImpl;
-
-    public LoginController(UserServiceImpl userServiceImpl) {
-        this.userServiceImpl = userServiceImpl;
-    }
-
     @RequestMapping(value="/auth/login")
     public String login(@RequestParam(value = "error", required = false) String error,
                         @RequestParam(value = "exception", required = false) String exception, Model model){
+
         model.addAttribute("error",error);
         model.addAttribute("exception",exception);
 
@@ -36,7 +32,9 @@ public class LoginController {
 
     @GetMapping("/auth/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response){
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
         if(authentication != null){
             new SecurityContextLogoutHandler().logout(request,response,authentication);
         }

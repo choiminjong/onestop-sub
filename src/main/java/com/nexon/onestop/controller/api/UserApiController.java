@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class UserApiController {
+
     @Autowired
     private UserServiceImpl userServiceImpl;
 
@@ -19,4 +20,5 @@ public class UserApiController {
         userServiceImpl.createUser(account);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
+
 }
