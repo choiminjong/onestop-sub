@@ -25,26 +25,26 @@ public class LoginController {
         this.userServiceImpl = userServiceImpl;
     }
 
-    @RequestMapping(value="/login")
+    @RequestMapping(value="/auth/login")
     public String login(@RequestParam(value = "error", required = false) String error,
                         @RequestParam(value = "exception", required = false) String exception, Model model){
         model.addAttribute("error",error);
         model.addAttribute("exception",exception);
 
-        return "login";
+        return "/login";
     }
 
-    @GetMapping("/logout")
+    @GetMapping("/auth/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if(authentication != null){
             new SecurityContextLogoutHandler().logout(request,response,authentication);
         }
 
-        return "redirect:/login";
+        return "redirect:/auth/login";
     }
 
-    @GetMapping(value={"/denied"})
+    @GetMapping(value={"/auth/denied"})
     public String accessDenied(@RequestParam(value="exception",required = false) String exception, Principal principal, Model model) throws Exception {
 
         Account account = null;
@@ -60,7 +60,7 @@ public class LoginController {
         return "denied";
     }
 
-    @GetMapping("/join")
+    @GetMapping("/auth/join")
     public String joinForm(){
         return "login/register";
     }
