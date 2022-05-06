@@ -11,6 +11,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@ToString(exclude = {"resourcesSet"})
 @NoArgsConstructor
 public class Role {
 
