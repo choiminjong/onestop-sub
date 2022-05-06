@@ -2,6 +2,7 @@ package com.nexon.onestop.security.auth;
 
 import com.nexon.onestop.domain.entity.Account;
 import com.nexon.onestop.domain.entity.Role;
+import lombok.Data;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,8 +13,9 @@ import java.util.List;
 import java.util.Set;
 
 
-@Getter
+@Data
 public class PrincipalDetail implements UserDetails {
+
     private Account account;
 
     public PrincipalDetail(Account account) {

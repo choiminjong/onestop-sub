@@ -13,7 +13,7 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString(exclude = {"userRoles"})
 @EqualsAndHashCode(of = "id")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class Account extends BaseTimeEntity {
 
     @Id

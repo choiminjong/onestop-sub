@@ -63,6 +63,7 @@ public class UserServiceImpl implements UserService {
 
     }
 
+
     @Transactional
     public AccountDto getUser(Long id) {
         Account account = userRepository.findById(id)
@@ -70,17 +71,22 @@ public class UserServiceImpl implements UserService {
                     return new UsernameNotFoundException("해당 사용자를 찾을 수 없습니다.");
                 });
 
+
         ModelMapper modelMapper = new ModelMapper();
         AccountDto accountDto = modelMapper.map(account, AccountDto.class);
 
         List<String> roles = account.getUserRoles()
-                .stream()
-                .map(role -> role.getRoleName())
-                .collect(Collectors.toList());
+                            .stream()
+                            .map(role -> role.getRoleName())
+                            .collect(Collectors.toList());
+
+        System.out.println("roles = " + roles);
 
         accountDto.setRoles(roles);
+
         return accountDto;
     }
+
 
     @Transactional
     public List<Account> getUsers() {
