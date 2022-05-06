@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Set;
 
 @Controller
-public class ResourcesController {
+public class ResourcesManagerController {
 
     @Autowired
     private ResourcesService resourcesService;
@@ -34,7 +34,6 @@ public class ResourcesController {
     public String getResources(Model model) throws Exception {
 
         List<Resources> resources = resourcesService.getResources();
-
         model.addAttribute("resources", resources);
 
         return "admin/resource/list";

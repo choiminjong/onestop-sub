@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
-public class RoleController {
+public class RoleManagerController {
 
     @Autowired
     private RoleServiceImpl roleServiceImpl;
