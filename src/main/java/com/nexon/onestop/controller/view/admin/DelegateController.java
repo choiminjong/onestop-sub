@@ -26,6 +26,7 @@ public class DelegateController {
     public String getdelegates(Model model) throws Exception {
 
         List<Delegate> delegates = delegateServiceImpl.getDelegates();
+
         model.addAttribute("delegates", delegates);
 
         return "admin/delegate/list";
@@ -36,6 +37,7 @@ public class DelegateController {
 
         DelegateDto delegate = delegateServiceImpl.getDelegate(id);
         System.out.println("delegate !!!! = " + delegate);
+
         model.addAttribute("delegate", delegate);
 
         return "admin/delegate/detail";

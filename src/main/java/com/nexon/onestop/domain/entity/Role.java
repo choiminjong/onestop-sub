@@ -3,6 +3,7 @@ package com.nexon.onestop.domain.entity;
 import lombok.*;
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
@@ -10,7 +11,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 public class Role {
 
     @Id
@@ -24,5 +25,9 @@ public class Role {
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "userRoles")
     private Set<Account> user = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roleSet")
+    @OrderBy("orderNum desc")
+    private Set<Resources> resourcesSet = new LinkedHashSet<>();
 
 }
