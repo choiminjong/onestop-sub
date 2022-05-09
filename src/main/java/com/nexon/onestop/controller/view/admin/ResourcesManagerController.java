@@ -58,7 +58,7 @@ public class ResourcesManagerController {
     @GetMapping(value="/admin/resources/register")
     public String viewRoles(Model model) throws Exception {
 
-        List<Role> roleList = roleService.getRoles();
+        List<Role> roleList = roleService.getListRoles();
 
         ResourcesDto resources = new ResourcesDto();
         Set<Role> roleSet = new HashSet<>();
@@ -74,7 +74,7 @@ public class ResourcesManagerController {
     @GetMapping(value="/admin/resources/{id}")
     public String getResources(@PathVariable String id, Model model) throws Exception {
 
-        List<Role> roleList = roleService.getRoles();
+        List<Role> roleList = roleService.getListRoles();
 
         Resources resources = resourcesService.getResources(Long.valueOf(id));
         ModelMapper modelMapper = new ModelMapper();

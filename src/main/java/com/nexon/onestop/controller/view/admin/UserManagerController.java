@@ -25,14 +25,6 @@ public class UserManagerController {
     @Autowired
     private RoleServiceImpl roleServiceImpl;
 
-//    @GetMapping(value="/accounts")
-//    public String getUsers(Model model) throws Exception {
-//
-//        List<Account> accounts = userServiceImpl.getUsers();
-//        model.addAttribute("accounts", accounts);
-//
-//        return "admin/user/list";
-//    }
 
     @GetMapping(value="/accounts")
     public String getUsers(Model model,
@@ -56,7 +48,7 @@ public class UserManagerController {
     public String getUser(@PathVariable(value = "id") Long id, Model model) {
 
         AccountDto accountDto = userServiceImpl.getUser(id);
-        List<Role> roleList = roleServiceImpl.getRoles();
+        List<Role> roleList = roleServiceImpl.getListRoles();
 
         model.addAttribute("account", accountDto);
         model.addAttribute("roleList", roleList);

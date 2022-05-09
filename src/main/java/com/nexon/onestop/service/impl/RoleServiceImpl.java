@@ -4,6 +4,8 @@ import com.nexon.onestop.domain.entity.Role;
 import com.nexon.onestop.repository.RoleRepository;
 import com.nexon.onestop.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -25,10 +27,16 @@ public class RoleServiceImpl implements RoleService {
                 });
     }
 
+    @Override
     @Transactional
-    public List<Role> getRoles() {
-
+    public List<Role> getListRoles() {
         return roleRepository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public Page<Role> getPageRoles(String searchText, Pageable pageable) {
+        return roleRepository.findByRoleNameContaining(searchText, pageable);
     }
 
     @Transactional
