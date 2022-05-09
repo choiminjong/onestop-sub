@@ -6,15 +6,18 @@ import com.nexon.onestop.domain.entity.Role;
 import com.nexon.onestop.service.impl.RoleServiceImpl;
 import com.nexon.onestop.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
 public class UserManagerController {
     @Autowired
     private UserServiceImpl userServiceImpl;
@@ -22,24 +25,34 @@ public class UserManagerController {
     @Autowired
     private RoleServiceImpl roleServiceImpl;
 
-    @GetMapping(value="/admin/accounts")
-    public String getUsers(Model model) throws Exception {
+//    @GetMapping(value="/accounts")
+//    public String getUsers(Model model) throws Exception {
+//
+//        List<Account> accounts = userServiceImpl.getUsers();
+//        model.addAttribute("accounts", accounts);
+//
+//        return "admin/user/list";
+//    }
 
-        List<Account> accounts = userServiceImpl.getUsers();
-        model.addAttribute("accounts", accounts);
+    @GetMapping(value="/accounts")
+    public String getUsers(Model model,
+                           @PageableDefault(size = 3, sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
+                           @RequestParam(required = false, defaultValue = "") String searchText ){
+
+        Page<Account> accounts = userServiceImpl.getUsers(searchText,pageable);
+
+        int startPage = Math.max(1,accounts.getPageable().getPageNumber() - 8);
+        int endPage = Math.min(accounts.getTotalPages(), accounts.getPageable().getPageNumber() + 8);
+
+        model.addAttribute("accounts",accounts);
+        model.addAttribute("endPage",endPage);
+        model.addAttribute("startPage", startPage);
 
         return "admin/user/list";
     }
 
-    @PostMapping(value="/admin/accounts")
-    public String modifyUser(AccountDto accountDto) throws Exception {
 
-        userServiceImpl.modifyUser(accountDto);
-
-        return "redirect:/admin/accounts";
-    }
-
-    @GetMapping(value = "/admin/accounts/{id}")
+    @GetMapping(value = "/accounts/{id}")
     public String getUser(@PathVariable(value = "id") Long id, Model model) {
 
         AccountDto accountDto = userServiceImpl.getUser(id);
@@ -51,11 +64,5 @@ public class UserManagerController {
         return "admin/user/detail";
     }
 
-    @GetMapping(value = "/admin/accounts/delete/{id}")
-    public String removeUser(@PathVariable(value = "id") Long id, Model model) {
 
-        userServiceImpl.deleteUser(id);
-
-        return "redirect:/admin/users";
-    }
 }

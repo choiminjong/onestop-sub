@@ -1,4 +1,4 @@
-package com.nexon.onestop.controller.view.login;
+package com.nexon.onestop.controller.view.auth;
 
 import com.nexon.onestop.domain.entity.Account;
 import com.nexon.onestop.service.impl.UserServiceImpl;

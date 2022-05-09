@@ -8,6 +8,8 @@ import com.nexon.onestop.repository.UserRepository;
 import com.nexon.onestop.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -63,6 +65,8 @@ public class UserServiceImpl implements UserService {
 
     }
 
+
+
     @Transactional
     public AccountDto getUser(Long id) {
         Account account = userRepository.findById(id)
@@ -82,12 +86,15 @@ public class UserServiceImpl implements UserService {
         return accountDto;
     }
 
+
     @Transactional
-    public List<Account> getUsers() {
-        return userRepository.findAll();
+    public Page<Account> getUsers(String searchText,Pageable pageable ) {
+        return userRepository.findByUsernameContaining(searchText, pageable);
     }
 
+
     @Override
+    @Transactional
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
