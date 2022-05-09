@@ -22,7 +22,7 @@ public class UrlFilterInvocationSecurityMetadataSource implements FilterInvocati
         HttpServletRequest request = ((FilterInvocation) object).getRequest();
 
         //수동으로 데이터 추가 테스트
-        requestMap.put(new AntPathRequestMatcher("/mypage"), Arrays.asList(new SecurityConfig("ROLE_USER")));
+        requestMap.put(new AntPathRequestMatcher("/mypage"), Arrays.asList(new SecurityConfig("ROLE_USER"),new SecurityConfig("ROLE_ADMIN")));
 
         if(requestMap != null){
 

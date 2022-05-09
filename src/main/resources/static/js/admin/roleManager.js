@@ -1,7 +1,7 @@
 
 async function registerRole() {
     /*
-       registerRole 롤 추가
+       registerRole 롤 등록
     */
 
     let data = {
@@ -30,7 +30,7 @@ async function registerRole() {
 
 async function modifyRole() {
     /*
-       modifyRoleRole 롤 수정
+       modifyRole 롤 수정
     */
 
     let roleId = document.querySelector('#roleId').value;

@@ -5,6 +5,8 @@ import com.nexon.onestop.domain.entity.Resources;
 import com.nexon.onestop.repository.ResourcesRepository;
 import com.nexon.onestop.service.ResourcesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -32,6 +34,11 @@ public class ResourcesServiceImpl implements ResourcesService {
     @Transactional
     public List<Resources> getResources() {
         return resourcesRepository.findAll(Sort.by(Sort.Order.asc("orderNum")));
+    }
+
+    @Override
+    public Page<Resources> getPageResources(Pageable pageable) {
+        return resourcesRepository.findPageResources(pageable);
     }
 
     @Override

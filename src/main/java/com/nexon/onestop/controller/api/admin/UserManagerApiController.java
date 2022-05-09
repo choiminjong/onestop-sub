@@ -15,9 +15,6 @@ public class UserManagerApiController {
     @Autowired
     private UserServiceImpl userServiceImpl;
 
-    @Autowired
-    private RoleServiceImpl roleServiceImpl;
-
     @PostMapping(value="/accounts")
     public ResponseDto<Integer>  modifyUser(@RequestBody AccountDto accountDto) throws Exception {
         userServiceImpl.modifyUser(accountDto);

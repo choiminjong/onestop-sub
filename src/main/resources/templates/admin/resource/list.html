@@ -40,6 +40,22 @@
                         </tbody>
                     </table>
 
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item" th:classappend="${1 == resources.pageable.getPageNumber() +1} ? 'disabled'">
+                                <a class="page-link" href="#" th:href="@{/admin/resources(page=${resources.pageable.getPageNumber() - 1},searchText=${param.searchText})}">Previous</a>
+                            </li>
+
+                            <li class="page-item " th:classappend="${i == resources.pageable.getPageNumber() +1} ? 'disabled'"
+                                th:each="i  : ${#numbers.sequence(startPage,endPage)} ">
+                                <a class="page-link" href="#" th:text="${i}" th:href="@{/admin/resources(page=${i - 1},searchText=${param.searchText})}">1</a></li>
+
+                            <li class="page-item" th:classappend="${resources.totalPages == resources.pageable.getPageNumber() +1} ? 'disabled'">
+                                <a class="page-link" href="#" th:href="@{/admin/resources(page=${resources.pageable.getPageNumber() + 1},searchText=${param.searchText})}">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+
                     <div style="text-align:right;">
                         <p><a class="btn btn-dark btn-lg" style="margin:10;" th:href="@{/admin/resources/register}">리소드 등록</a></p>
                     </div>

@@ -25,9 +25,12 @@ public class SecurityResourceService {
         LinkedHashMap<RequestMatcher, List<ConfigAttribute>> result = new LinkedHashMap<>();
         List<Resources> resourcesList = resourcesRepository.findAllResources();
 
+        System.out.println("request resourcesList = " + resourcesList);
+
         resourcesList.forEach(re -> {
 
             List<ConfigAttribute> configAttributeList = new ArrayList<>();
+
             re.getRoleSet().forEach(role ->{
                 //SecurityConfig  import org.springframework.security.access.SecurityConfig; 패키지 필요
                 configAttributeList.add(new SecurityConfig(role.getRoleName())); // configAttributeList 구현체 기준으로 객체를 Role 계속 추가한다.

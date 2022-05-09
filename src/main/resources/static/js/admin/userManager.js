@@ -1,7 +1,7 @@
 
 async function updateUser() {
     /*
-       user 회원 정보 수정
+       updateUser 회원 정보 수정
        accountDto = AccountDto(id=1, username=admin, email=dominic@nexon.co.kr, password=1234, roles=[ROLE_USER, ROLE_MANAGER, ROLE_ADMIN])
     */
 
@@ -13,7 +13,7 @@ async function updateUser() {
         }
     }
 
-        let data = {
+    let data = {
         id: document.querySelector('#userId').value,
         username: document.querySelector('#username').value,
         password: document.querySelector('#password').value,

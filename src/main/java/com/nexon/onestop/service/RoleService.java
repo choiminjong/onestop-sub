@@ -10,6 +10,7 @@ import java.util.List;
 public interface RoleService {
 
     Role getRole(long id);
+    Role getRolename(String roleName);
     List<Role> getListRoles();
     Page<Role> getPageRoles(String searchText , Pageable pageable);
     void createRole(Role role);
