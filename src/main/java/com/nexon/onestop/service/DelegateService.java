@@ -9,4 +9,8 @@ import java.util.List;
 public interface DelegateService {
     List<Delegate> getDelegates();
     DelegateDto getDelegate(Long id);
+    void addDelegateUser(DelegateDto delegateDto);
+    void createDelegate(DelegateDto delegateDto);
+    void modifydelegate(DelegateDto delegateDto);
+
 }

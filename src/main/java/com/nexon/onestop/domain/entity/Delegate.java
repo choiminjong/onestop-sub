@@ -12,6 +12,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = {"delegate"})
 @EqualsAndHashCode(of = "id")
 public class Delegate {
     @Id
@@ -22,13 +23,19 @@ public class Delegate {
     private String groupname;
 
     @OneToMany(mappedBy = "delegate")
-    @JsonIgnoreProperties({"delegate"})
     private List<DelegateUser> delegateUsers = new ArrayList<>();
 
     @Builder
     private Delegate(String groupname) {
         this.groupname = groupname;
     }
+
+    @Builder
+    private Delegate(Long id,String groupname) {
+        this.id = id;
+        this.groupname = groupname;
+    }
+
 }
 
 

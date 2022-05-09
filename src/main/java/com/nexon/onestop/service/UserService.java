@@ -13,5 +13,5 @@ public interface UserService {
     void modifyUser(AccountDto accountDto);
     Page<Account> getUsers(String searchText ,Pageable pageable);
     AccountDto getUser(Long id);
-    void deleteUser(Long idx);
+    void deleteUser(Long id);
 }

@@ -1,9 +1,13 @@
 package com.nexon.onestop.service.impl;
 
 import com.nexon.onestop.domain.dto.DelegateDto;
+import com.nexon.onestop.domain.entity.Account;
 import com.nexon.onestop.domain.entity.Delegate;
+import com.nexon.onestop.domain.entity.DelegateUser;
 import com.nexon.onestop.repository.DelegateRepository;
+import com.nexon.onestop.repository.DelegateUserRepository;
 import com.nexon.onestop.service.DelegateService;
+import lombok.Builder;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,6 +22,9 @@ public class DelegateServiceImpl implements DelegateService {
 
     @Autowired
     private DelegateRepository delegateRepository;
+
+    @Autowired
+    private DelegateUserRepository delegateUserRepository;
 
     @Override
     @Transactional
@@ -43,5 +50,44 @@ public class DelegateServiceImpl implements DelegateService {
 
         delegateDto.setDelegateUsers(deletes);
         return delegateDto;
+    }
+
+    @Override
+    @Transactional
+    public void addDelegateUser(DelegateDto delegateDto) {
+
+        Delegate delegateAdd = delegateRepository.findById(delegateDto.getId())
+                .orElseThrow(()->{
+                    return new UsernameNotFoundException("해당 그룹을 찾을 수 없습니다.");
+                });
+
+        DelegateUser delegateUser = DelegateUser.builder()
+                                    .username(delegateDto.getUsername())
+                                    .delegate(delegateAdd)
+                                    .build();
+
+        delegateUserRepository.save(delegateUser);
+    }
+
+    @Override
+    @Transactional
+    public void createDelegate(DelegateDto delegateDto) {
+
+        Delegate delegate = Delegate.builder()
+                .groupname(delegateDto.getGroupname())
+                .build();
+        delegateRepository.save(delegate);
+    }
+
+    @Override
+    @Transactional
+    public void modifydelegate(DelegateDto delegateDto) {
+        Delegate delegate = delegateRepository.findById(delegateDto.getId())
+                .orElseThrow(()->{
+                    return new UsernameNotFoundException("해당 그룹을 찾을 수 없습니다.");
+                });
+
+        delegate.setGroupname(delegateDto.getGroupname());
+        delegateRepository.save(delegate);
     }
 }

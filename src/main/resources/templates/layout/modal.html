@@ -1,29 +1,38 @@
-<!DOCTYPE HTML>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-</head>
-<body>
-<!-- Modal -->
-<div th:fragment="modal(id)" class="modal fade" th:id="${id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+
+<th:block th:fragment="setLogin(login)">
+    <body>
+    <div class="member_login">
+        <form th:action="@{/auth/loginProc}" th:method="POST">
+            <div class="member_login_input">
+                <input type="text" name="username" placeholder="아이디" >
             </div>
-            <div class="modal-body">
-                Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in,
-                egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+
+            <div class="member_login_input">
+                <input type="password" name="password" placeholder="비밀번호">
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+
+            <div class="member_login_btn">
+
+                <input type="submit" class="btn btn-secondary" id="btn-login" value="로그인">
+
+                <input type="button" class="btn btn-secondary" value="회원가입" onclick="location.href='/member/join'">
+
             </div>
-        </div>
+
+            <div class="find_password">
+                <a href="/forgot-password">아이디 또는 비밀번호를 잊으셨나요?</a>
+            </div>
+
+            <div class="login_api">
+                <a href="https://kauth.kakao.com/oauth/authorize?client_id=d860d38c992ca8bf5f07dcc3fd5122b9&redirect_uri=http://localhost:9090/member/auth/kakao/callback&response_type=code"><img src="/image/kakao_login_button.png"></a>
+            </div>
+
+            <div class="login_api">
+                <a href="/oauth2/authorization/google"><img src="/image/google_login_button.png"></a>
+            </div>
+
+        </form>
     </div>
-</div>
-</body>
-</html>
+    </body>
+</th:block>
