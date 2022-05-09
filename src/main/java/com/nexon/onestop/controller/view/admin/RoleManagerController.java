@@ -45,7 +45,7 @@ public class RoleManagerController {
 
 
 
-    @GetMapping(value="/admin/roles/register")
+    @GetMapping(value="/roles/register")
     public String viewRoles(Model model) throws Exception {
         RoleDto role = new RoleDto();
         model.addAttribute("role", role);
@@ -53,7 +53,7 @@ public class RoleManagerController {
     }
 
 
-    @GetMapping(value="/admin/roles/{id}")
+    @GetMapping(value="/roles/{id}")
     public String getRole(@PathVariable String id, Model model) throws Exception {
 
         Role role = roleServiceImpl.getRole(Long.valueOf(id));

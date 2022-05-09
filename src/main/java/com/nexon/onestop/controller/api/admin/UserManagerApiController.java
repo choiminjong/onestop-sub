@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/admin")
 public class UserManagerApiController {
 
     @Autowired
@@ -17,13 +18,13 @@ public class UserManagerApiController {
     @Autowired
     private RoleServiceImpl roleServiceImpl;
 
-    @PostMapping(value="/admin/accounts")
+    @PostMapping(value="/accounts")
     public ResponseDto<Integer>  modifyUser(@RequestBody AccountDto accountDto) throws Exception {
         userServiceImpl.modifyUser(accountDto);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
-    @GetMapping(value="/admin/accounts/delete/{id}")
+    @GetMapping(value="/accounts/delete/{id}")
     public ResponseDto<Integer> removeUser(@PathVariable(value = "id") Long id) throws Exception {
         userServiceImpl.deleteUser(id);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);

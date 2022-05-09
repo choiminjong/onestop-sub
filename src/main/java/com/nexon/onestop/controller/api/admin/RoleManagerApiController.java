@@ -12,12 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/admin")
 public class RoleManagerApiController {
 
     @Autowired
     private RoleServiceImpl roleServiceImpl;
 
-    @PostMapping(value="/admin/roles")
+    @PostMapping(value="/roles")
     public ResponseDto<Integer> createRole(@RequestBody RoleDto roleDto) throws Exception {
 
         ModelMapper modelMapper = new ModelMapper();
@@ -27,7 +28,7 @@ public class RoleManagerApiController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
-    @PostMapping(value="/admin/roles/{id}")
+    @PostMapping(value="/roles/{id}")
     public ResponseDto<Integer> modifyRole(@RequestBody RoleDto roleDto ,
                                            @PathVariable(value = "id") Long id) throws Exception {
 
