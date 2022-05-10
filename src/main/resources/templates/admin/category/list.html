@@ -13,7 +13,7 @@
         <div style="padding-top:50px;" class="col">
             <div class="container text-center">
 
-                <form class="form-inline d-flex justify-content-end" method="GET" >
+                <form class="form-inline d-flex justify-content-end" method="GET" th:action="@{/admin/category}">
                     <div class="form-group mx-sm-3 mb-2">
                         <div>총 건수 : <span th:text="${categoryes.totalElements}"> </span></div>
                         <label for="searchText" class="sr-only">검색</label> &nbsp&nbsp&nbsp&nbsp
