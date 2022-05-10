@@ -13,12 +13,11 @@
         <div style="padding-top:50px;" class="col">
             <div class="container text-center">
 
-                <form class="form-inline d-flex justify-content-end" method="GET" th:action="@{/admin/category}">
+                <form class="form-inline d-flex justify-content-end" method="GET" >
                     <div class="form-group mx-sm-3 mb-2">
-                        <div>총 건수 : <span th:text="${category.totalElements}"> </span></div>
+                        <div>총 건수 : <span th:text="${categoryes.totalElements}"> </span></div>
                         <label for="searchText" class="sr-only">검색</label> &nbsp&nbsp&nbsp&nbsp
-                        <input type="text" class="form-control" id="searchText" name="searchText"
-                               th:value="${param.searchText}">
+                        <input type="text" class="form-control" id="searchText" name="searchText" th:value="${param.searchText}">
                     </div>
                     <button type="submit" class="btn btn-light mb-2">검색</button>
                 </form>
@@ -32,7 +31,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="link_btn hover" th:each="role : ${category}">
+                        <tr class="link_btn hover" th:each="category : ${categoryes}">
                             <td style="text-align: center;">
                                 <a th:href="@{'/admin/category/' + ${category.id}}"><span th:text="${category.categoryName}">회원</span></a>
                             </td>
@@ -47,16 +46,16 @@
 
                     <nav aria-label="Page navigation example">
                         <ul class="pagination justify-content-center">
-                            <li class="page-item" th:classappend="${1 == category.pageable.getPageNumber() +1} ? 'disabled'">
-                                <a class="page-link" href="#" th:href="@{/admin/category(page=${category.pageable.getPageNumber() - 1},searchText=${param.searchText})}">Previous</a>
+                            <li class="page-item" th:classappend="${1 == categoryes.pageable.getPageNumber() +1} ? 'disabled'">
+                                <a class="page-link" href="#" th:href="@{/admin/category(page=${categoryes.pageable.getPageNumber() - 1},searchText=${param.searchText})}">Previous</a>
                             </li>
 
-                            <li class="page-item " th:classappend="${i == category.pageable.getPageNumber() +1} ? 'disabled'"
+                            <li class="page-item " th:classappend="${i == categoryes.pageable.getPageNumber() +1} ? 'disabled'"
                                 th:each="i  : ${#numbers.sequence(startPage,endPage)} ">
                                 <a class="page-link" href="#" th:text="${i}" th:href="@{/admin/category(page=${i - 1},searchText=${param.searchText})}">1</a></li>
 
-                            <li class="page-item" th:classappend="${category.totalPages == category.pageable.getPageNumber() +1} ? 'disabled'">
-                                <a class="page-link" href="#" th:href="@{/admin/category(page=${category.pageable.getPageNumber() + 1},searchText=${param.searchText})}">Next</a>
+                            <li class="page-item" th:classappend="${categoryes.totalPages == categoryes.pageable.getPageNumber() +1} ? 'disabled'">
+                                <a class="page-link" href="#" th:href="@{/admin/category(page=${categoryes.pageable.getPageNumber() + 1},searchText=${param.searchText})}">Next</a>
                             </li>
                         </ul>
                     </nav>

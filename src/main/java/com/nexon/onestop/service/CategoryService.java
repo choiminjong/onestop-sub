@@ -9,4 +9,7 @@ import java.util.List;
 
 public interface CategoryService {
     Page<Category> getPageCategory(String searchText , Pageable pageable);
+    void createCategory(Category category);
+    Category getCategory(long id);
+    void deleteCategory(long id);
 }

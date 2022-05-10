@@ -43,7 +43,6 @@ public class RoleManagerApiController {
     @DeleteMapping(value="/roles/{id}")
     public ResponseDto<Integer> removeResources(@PathVariable String id) throws Exception {
 
-        Role role = roleServiceImpl.getRole(Long.valueOf(id));
         roleServiceImpl.deleteRole(Long.valueOf(id));
 
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);

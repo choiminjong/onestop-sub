@@ -48,8 +48,8 @@
             <div class="col-sm-offset-1 col-sm-10">
                 <button type="button" class="btn btn-dark btn-lg" th:onclick="|modifyResources()|">수정</button>
                 <button type="button" class="btn btn-dark btn-lg" th:onclick="|registerResources()|">등록</button>
-                <a class="btn btn-dark btn-lg" style="margin:10;" th:href="@{/admin/resources}">목록 </a>
                 <a class="btn btn-dark btn-lg" style="margin:10;" th:href="@{'/admin/resources/delete/' + *{id}}">삭제</a>
+                <a class="btn btn-dark btn-lg" style="margin:10;" th:href="@{/admin/resources}">목록 </a>
             </div>
         </div>
     </form>

@@ -53,6 +53,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Transactional
     public void deleteRole(long id) {
+
         roleRepository.deleteById(id);
     }
 }
