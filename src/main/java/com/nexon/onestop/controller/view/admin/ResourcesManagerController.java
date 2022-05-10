@@ -34,7 +34,8 @@ public class ResourcesManagerController {
 
     @GetMapping(value="/resources")
     public String getResources(Model model,
-                               @PageableDefault(size = 3, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) throws Exception {
+                               @PageableDefault(size = 3, sort = "id", direction = Sort.Direction.DESC) Pageable pageable)
+                               throws Exception {
 
         Page<Resources> resources = resourcesServiceImpl.getPageResources(pageable);
 
@@ -55,7 +56,7 @@ public class ResourcesManagerController {
 
         ResourcesDto resources = new ResourcesDto();
         Set<Role> roleSet = new HashSet<>();
-        roleSet.add(new Role());
+        //roleSet.add(new Role());
         resources.setRoleSet(roleSet);
 
         model.addAttribute("roleList", roleList);

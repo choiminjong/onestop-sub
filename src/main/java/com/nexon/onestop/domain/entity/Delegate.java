@@ -11,9 +11,9 @@ import java.util.List;
 @Entity
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @ToString(exclude = {"delegate"})
 @EqualsAndHashCode(of = "id")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Delegate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

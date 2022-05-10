@@ -10,7 +10,7 @@ import java.util.Set;
 @Data
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Resources {
 
     @Id

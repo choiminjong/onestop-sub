@@ -12,7 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @ToString(exclude = {"resourcesSet"})
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Role {
 
     @Id

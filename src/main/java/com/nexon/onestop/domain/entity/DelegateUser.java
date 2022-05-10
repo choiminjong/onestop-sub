@@ -7,7 +7,8 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DelegateUser {
 
     @Id
