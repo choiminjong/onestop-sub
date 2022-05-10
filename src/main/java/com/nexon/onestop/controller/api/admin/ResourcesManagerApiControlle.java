@@ -6,6 +6,7 @@ import com.nexon.onestop.domain.dto.RoleDto;
 import com.nexon.onestop.domain.entity.Resources;
 import com.nexon.onestop.domain.entity.Role;
 import com.nexon.onestop.repository.RoleRepository;
+import com.nexon.onestop.security.metadatasource.UrlFilterInvocationSecurityMetadataSource;
 import com.nexon.onestop.service.ResourcesService;
 import com.nexon.onestop.service.RoleService;
 import com.nexon.onestop.service.impl.ResourcesServiceImpl;
@@ -29,6 +30,9 @@ public class ResourcesManagerApiControlle {
     @Autowired
     private RoleServiceImpl roleServiceImpl;
 
+    @Autowired
+    private UrlFilterInvocationSecurityMetadataSource urlFilterInvocationSecurityMetadataSource;
+
     @PostMapping(value="/resources")
     public ResponseDto<Integer> createResources(@RequestBody ResourcesDto resourcesDto) throws Exception {
 
@@ -41,6 +45,7 @@ public class ResourcesManagerApiControlle {
         resources.setRoleSet(roles);
 
         resourcesServiceImpl.createResources(resources);
+        urlFilterInvocationSecurityMetadataSource.reload();
 
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
@@ -59,6 +64,7 @@ public class ResourcesManagerApiControlle {
         resources.setRoleSet(roles);
 
         resourcesServiceImpl.createResources(resources);
+        urlFilterInvocationSecurityMetadataSource.reload();
 
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }

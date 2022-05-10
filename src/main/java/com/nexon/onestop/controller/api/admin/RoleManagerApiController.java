@@ -40,14 +40,13 @@ public class RoleManagerApiController {
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
-//    @GetMapping(value="/admin/roles/delete/{id}")
-//    public String removeResources(@PathVariable String id, Model model) throws Exception {
-//
-//        Role role = roleServiceImpl.getRole(Long.valueOf(id));
-//        roleServiceImpl.deleteRole(Long.valueOf(id));
-//
-//        return "redirect:/admin/resources";
-//    }
-//
+    @DeleteMapping(value="/roles/{id}")
+    public ResponseDto<Integer> removeResources(@PathVariable String id) throws Exception {
+
+        Role role = roleServiceImpl.getRole(Long.valueOf(id));
+        roleServiceImpl.deleteRole(Long.valueOf(id));
+
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+    }
 
 }

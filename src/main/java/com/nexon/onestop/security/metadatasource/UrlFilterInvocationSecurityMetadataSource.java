@@ -67,6 +67,8 @@ public class UrlFilterInvocationSecurityMetadataSource implements FilterInvocati
 
             requestMap.put(entry.getKey(), entry.getValue());
         }
+
+        System.out.println("requestMap = " + requestMap);
     }
 
     @Override

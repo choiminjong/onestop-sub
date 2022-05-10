@@ -9,17 +9,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLEncoder;
 
 @Component
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
     private String errorPage;
+    private String errorMessage;
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException)
                         throws IOException, ServletException {
 
-        String denieUrl = errorPage + "?exception="+accessDeniedException.getMessage();
+        errorMessage = URLEncoder.encode(accessDeniedException.getMessage(), "UTF-8");
+        String denieUrl = errorPage + "?exception="+errorMessage;
         response.sendRedirect(denieUrl);
     }
 

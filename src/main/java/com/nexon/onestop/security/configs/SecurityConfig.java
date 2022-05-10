@@ -1,11 +1,11 @@
 package com.nexon.onestop.security.configs;
 
-import com.nexon.onestop.security.auth.PrincipalDetailService;
 import com.nexon.onestop.security.handler.CustomAccessDeniedHandler;
 import com.nexon.onestop.security.handler.CustomAuthenticationFailureHandler;
 import com.nexon.onestop.security.handler.CustomAuthenticationSuccessHandler;
 import com.nexon.onestop.security.metadatasource.UrlFilterInvocationSecurityMetadataSource;
 import com.nexon.onestop.security.metadatasource.UrlResourcesMapFactoryBean;
+import com.nexon.onestop.security.provider.CustomAuthenticationProvider;
 import com.nexon.onestop.security.service.SecurityResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +15,7 @@ import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.vote.AffirmativeBased;
 import org.springframework.security.access.vote.RoleVoter;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -35,9 +36,6 @@ import java.util.List;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private PrincipalDetailService principalDetailService;
-
-    @Autowired
     private SecurityResourceService securityResourceService;
 
     @Autowired
@@ -46,20 +44,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
 
-
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean(); // 시큐리티 인증 처리시 필요
+        return super.authenticationManagerBean();//시큐리티 인증 처리하는데 사용
     }
 
-    /*
-      로그인을 요청을하면  시큐리티에서 password 가로챕니다.
-      password 확인 후 암호화 후 DB 패스워드를 비교합니다.
-      비교시 문제가 있으면 오류가를 반환합니다.
-    */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(principalDetailService).passwordEncoder(passwordEncoder());
+        auth.authenticationProvider(authenticationProvider());
+    }
+
+    @Bean
+    public AuthenticationProvider authenticationProvider() {
+        return new CustomAuthenticationProvider();
     }
 
     @Override
@@ -87,7 +84,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(accessDeniedHandler())
 
                 .and()
-                .addFilterBefore(customFilterSecurityInterceptor(),FilterSecurityInterceptor.class)
+                //.addFilterBefore(customFilterSecurityInterceptor(),FilterSecurityInterceptor.class)
         ;
         http.csrf().disable();
     }
@@ -109,7 +106,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         customAccessDeniedHandler.setErrorPage("/auth/denied");
         return customAccessDeniedHandler;
     }
-
 
     @Bean
     //인가(url 권한 검토)처리 필터 생성
