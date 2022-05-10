@@ -1,4 +1,4 @@
-package com.nexon.onestop.controller.api;
+package com.nexon.onestop.controller.api.dummy;
 
 import com.nexon.onestop.domain.entity.*;
 import com.nexon.onestop.repository.DelegateRepository;
