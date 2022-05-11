@@ -6,10 +6,10 @@ import com.nexon.onestop.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -25,6 +25,17 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @Transactional
+    public List<Category> getCategoryes() {
+        return categoryRepository.findAll();
+    }
+
+    @Override
+    public Category getCategoryName(String categoryName) {
+        return categoryRepository.findByCategoryName(categoryName);
+    }
+
+    @Override
+    @Transactional
     public void createCategory(Category category) {
         categoryRepository.save(category);
     }
@@ -34,7 +45,7 @@ public class CategoryServiceImpl implements CategoryService {
     public Category getCategory(long id) {
         return categoryRepository.findById(id)
                 .orElseThrow(()->{
-                    return new UsernameNotFoundException("해당 카테고리를 찾을 수 없습니다.");
+                    return new IllegalArgumentException("해당 카테고리를 찾을 수 없습니다.");
                 });
     }
 

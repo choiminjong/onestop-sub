@@ -12,4 +12,5 @@ public interface CategoryRepository extends JpaRepository<Category,Long> {
     //roleName  필드 like 검색
     Page<Category> findByCategoryNameContaining(String categoryName, Pageable pageable);
 
+    Category findByCategoryName(String categoryName);
 }

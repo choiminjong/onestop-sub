@@ -1,6 +1,5 @@
 package com.nexon.onestop.service.impl;
 
-import com.nexon.onestop.domain.entity.Delegate;
 import com.nexon.onestop.domain.entity.Resources;
 import com.nexon.onestop.repository.ResourcesRepository;
 import com.nexon.onestop.service.ResourcesService;
@@ -8,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +23,7 @@ public class ResourcesServiceImpl implements ResourcesService {
     public Resources getResources(long id) {
         Resources resources = resourcesRepository.findById(id)
                 .orElseThrow(()->{
-                    return new UsernameNotFoundException("리소스를 찾을 수 없습니다.");
+                    return new IllegalArgumentException("리소스를 찾을 수 없습니다.");
                 });
         return resources;
     }

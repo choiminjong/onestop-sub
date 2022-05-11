@@ -6,7 +6,6 @@ import com.nexon.onestop.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -23,13 +22,14 @@ public class RoleServiceImpl implements RoleService {
     public Role getRole(long id) {
         return roleRepository.findById(id)
                 .orElseThrow(()->{
-                    return new UsernameNotFoundException("해당 권한을 찾을 수 없습니다.");
+                    return new IllegalArgumentException("해당 권한을 찾을 수 없습니다.");
                 });
     }
 
     @Override
     @Transactional
     public Role getRolename(String roleName) {
+
         return   roleRepository.findByroleName(roleName);
     }
 
