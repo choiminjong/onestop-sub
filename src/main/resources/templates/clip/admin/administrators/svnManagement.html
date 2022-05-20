@@ -176,8 +176,8 @@
               <div class="input-group">
                 <select id ="input-group-users" class="" style="width: 100%;" multiple="multiple"  placeholder="User name is ..."></select>
                 <span class="input-group-btn">
-                            <button type="button" id ="add-user-to-group-button"class="btn btn-primary"><span class="fa fa-plus"></span></button>
-                        </span>
+                <button type="button" id ="add-user-to-group-button"class="btn btn-primary"><span class="fa fa-plus"></span></button>
+                </span>
               </div>
             </div>
           </div>
@@ -314,71 +314,77 @@
     <!--Content Body END-->
 <div class="footer" th:replace="fragments/common :: footer"></div>
     <script>
-      function selectAllfun(){
-        $('#input-group-users').select2({
-          ajax: {
-            url: '/rest/api/v1/svn/user/',
-            data: function (params,data) {
-              var query = {
-                search: params.term,
-                type: 'public'
-              }
-              // Query parameters will be ?search=[term]&type=public
-              return query;
-            },
-            processResults: function (data){
-              return {
-                results: $.map(data.Users, function(obj, index){
-                  return { id: obj.name, text: obj.name };
-                })
-              };
-            },
-          }
-        });
+      $(document).ready(function() {
+        $("#input-group-users").select2();
+        $("#input-repository-groups").select2();
+        $("#input-repository-users").select2();
+      });
 
-        $('#input-repository-groups').select2({
-          ajax: {
-            url: '/rest/api/v1/svn/group/',
-            data: function (params) {
-              var query = {
-                search: params.term,
-                type: 'public'
-              }
-              // Query parameters will be ?search=[term]&type=public
-              return query;
-            },
-            processResults: function (data){
-              return {
-                results: $.map(data.Groups, function(obj, index){
-                  return { id: obj.name, text: obj.name };
-                })
-              };
-            },
-          }
-        });
-
-
-        $('#input-repository-users').select2({
-          ajax: {
-            url: '/rest/api/v1/svn/user/',
-            data: function (params,data) {
-              var query = {
-                search: params.term,
-                type: 'public'
-              }
-              // Query parameters will be ?search=[term]&type=public
-              return query;
-            },
-            processResults: function (data){
-              return {
-                results: $.map(data.Users, function(obj, index){
-                  return { id: obj.name, text: obj.name };
-                })
-              };
-            },
-          }
-        });
-      }
+      // function selectAllfun(){
+      //   $('#input-group-users').select2({
+      //     ajax: {
+      //       url: '/rest/api/v1/svn/user/',
+      //       data: function (params,data) {
+      //         var query = {
+      //           search: params.term,
+      //           type: 'public'
+      //         }
+      //         // Query parameters will be ?search=[term]&type=public
+      //         return query;
+      //       },
+      //       processResults: function (data){
+      //         return {
+      //           results: $.map(data.Users, function(obj, index){
+      //             return { id: obj.name, text: obj.name };
+      //           })
+      //         };
+      //       },
+      //     }
+      //   });
+      //
+      //   $('#input-repository-groups').select2({
+      //     ajax: {
+      //       url: '/rest/api/v1/svn/group/',
+      //       data: function (params) {
+      //         var query = {
+      //           search: params.term,
+      //           type: 'public'
+      //         }
+      //         // Query parameters will be ?search=[term]&type=public
+      //         return query;
+      //       },
+      //       processResults: function (data){
+      //         return {
+      //           results: $.map(data.Groups, function(obj, index){
+      //             return { id: obj.name, text: obj.name };
+      //           })
+      //         };
+      //       },
+      //     }
+      //   });
+      //
+      //
+      //   $('#input-repository-users').select2({
+      //     ajax: {
+      //       url: '/rest/api/v1/svn/user/',
+      //       data: function (params,data) {
+      //         var query = {
+      //           search: params.term,
+      //           type: 'public'
+      //         }
+      //         // Query parameters will be ?search=[term]&type=public
+      //         return query;
+      //       },
+      //       processResults: function (data){
+      //         return {
+      //           results: $.map(data.Users, function(obj, index){
+      //             return { id: obj.name, text: obj.name };
+      //           })
+      //         };
+      //       },
+      //     }
+      //   });
+      // }
 
     </script>
 </div>

@@ -150,11 +150,16 @@
                                                         </thead>
                                                         <tbody id="grid-groups-user-list"class="tbody-grid-groups-user-list"></tbody>
                                                     </table>
-                                                </form>t
+                                                </form>
 
-                                                <input type="text" id="btn-bds-search"  class="form-control dmzt-query" placeholder="사용자"/>
-                                                <select id="bds-search-list" name="bds-search-list" class="form-control dmz-select-useyn">
-                                                </select>
+                                                <div class="ibox-footer">
+                                                    <div class="input-group">
+                                                        <select id ="input-group-users" class="" style="width: 100%;" multiple="multiple"  placeholder="User name is ..."></select>
+                                                        <span class="input-group-btn">
+                                                        <button type="button" id ="add-user-to-group-button"class="btn btn-primary"><span class="fa fa-plus"></span></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -177,7 +182,11 @@
         <div class="footer" th:replace="fragments/common :: footer"></div>
 
     </div>
-
+    <script>
+        $(document).ready(function() {
+            $("#input-group-users").select2();
+        });
+    </script>
 </div>
 </body>
 </html>

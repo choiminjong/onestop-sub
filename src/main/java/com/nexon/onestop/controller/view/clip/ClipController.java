@@ -18,6 +18,17 @@ public class ClipController {
         return "clip/admin/administrators/svnManagement";
     }
 
+    @GetMapping("/confluenceManagement")
+    public String confluenceManagement(){
+        return "clip/admin/administrators/confluenceManagement";
+    }
+
+    @GetMapping("/jiraManagement")
+    public String jiraManagement(){
+        return "clip/admin/administrators/jiraManagement";
+    }
+
+
     @GetMapping("/groupManagement")
     public String groupManagement(){
         return "clip/admin/settings/groupManagement";
@@ -32,5 +43,17 @@ public class ClipController {
     public String resourceManagement(){
         return "clip/admin/settings/resourceManagement";
     }
+
+    @GetMapping("/userManagement")
+    public String userManagement(){
+        return "clip/admin/settings/userManagement";
+    }
+
+    @GetMapping("/employeeManagement")
+    public String employeeManagement(){
+        return "clip/admin/settings/employeeManagement";
+    }
+
+
 
 }
