@@ -1,5 +1,6 @@
 package com.nexon.onestop.domain.entity;
 
+import com.nexon.onestop.domain.eunm.Flag;
 import lombok.*;
 import javax.persistence.*;
 import java.util.HashSet;

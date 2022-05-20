@@ -13,18 +13,27 @@ public class DelegateUser {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "delegateUser_id")
     private Long id;
 
     @Column(nullable = false)
     private String username;
 
-    @ManyToOne
-    @JoinColumn(name= "DELEGATEID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name= "delegate_id")
     private Delegate delegate;
 
     @Builder
     private DelegateUser(String username, Delegate delegate) {
         this.username = username;
+
+        if (delegate != null) {
+            changeDelegate(delegate);
+        }
+    }
+
+    public void changeDelegate(Delegate delegate) {
         this.delegate = delegate;
+        delegate.getDelegateUsers().add(this);
     }
 }

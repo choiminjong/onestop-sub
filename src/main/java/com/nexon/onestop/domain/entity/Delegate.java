@@ -12,11 +12,12 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @ToString(exclude = {"delegate"})
-@EqualsAndHashCode(of = "id")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Delegate {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "delegate_id")
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -29,13 +30,6 @@ public class Delegate {
     private Delegate(String groupname) {
         this.groupname = groupname;
     }
-
-    @Builder
-    private Delegate(Long id,String groupname) {
-        this.id = id;
-        this.groupname = groupname;
-    }
-
 }
 
 

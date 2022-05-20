@@ -9,12 +9,12 @@ import java.util.List;
 @Entity
 @Data
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "category_id")
     private Long id;
 
     @Column(nullable = false, unique = true)

@@ -10,4 +10,12 @@ public class AdminController {
     public String admin(){
         return "admin/config";
     }
+
+    @GetMapping("/admin/clip")
+    public String clip(){
+        return "clip/admin/index";
+    }
+
+
+
 }

@@ -21,9 +21,12 @@ spring:
       fail-on-empty-beans: false
 
   thymeleaf:
-    cache: false
-    prefix: classpath:templates/
+    prefix=classpath: templates/
     suffix: .html
+    check-template-location: true
+    cache: false
+    mvc:
+      static-path-pattern: "/static/**"
 
 logging.level:
   org.hibernate.SQL: debug

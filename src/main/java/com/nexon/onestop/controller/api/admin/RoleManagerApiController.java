@@ -4,6 +4,7 @@ import com.nexon.onestop.domain.dto.AccountDto;
 import com.nexon.onestop.domain.dto.ResponseDto;
 import com.nexon.onestop.domain.dto.RoleDto;
 import com.nexon.onestop.domain.entity.Role;
+import com.nexon.onestop.domain.eunm.Flag;
 import com.nexon.onestop.service.impl.RoleServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
