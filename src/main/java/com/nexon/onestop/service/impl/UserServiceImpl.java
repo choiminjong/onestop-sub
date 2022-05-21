@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -84,6 +85,15 @@ public class UserServiceImpl implements UserService {
 
         accountDto.setRoles(roles);
         return accountDto;
+    }
+
+    @Override
+    @Transactional
+    public Account accoutSearch(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(()->{
+                    return new IllegalArgumentException("해당 이메일을 찾을 수 없습니다.");
+                });
     }
 
 

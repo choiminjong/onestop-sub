@@ -25,5 +25,14 @@ spring:
     prefix: classpath:templates/
     suffix: .html
 
+oauth:
+  kakao:
+    authorize : https://kauth.kakao.com/oauth/authorize
+    client_id : b513d8919eb20fb7c475f7474c840680
+    redirect_uri : http://localhost:8080/auth/kakao/callback
+    oauth_token : https://kauth.kakao.com/oauth/token
+    user_into : https://kapi.kakao.com/v2/user/me
+  oauthkey: 1qazxsw2
+
 logging.level:
   org.hibernate.SQL: debug
