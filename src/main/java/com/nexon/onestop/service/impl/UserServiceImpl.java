@@ -91,8 +91,15 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public Account accoutSearch(String email) {
         return userRepository.findByEmail(email)
-                .orElseThrow(()->{
-                    return new IllegalArgumentException("해당 이메일을 찾을 수 없습니다.");
+                .orElseGet(()-> {
+
+                    //빈 객체를 리턴한다.
+                    Account account = Account.builder()
+                            .username(null)
+                            .email(null)
+                            .build();
+
+                    return account; //찾을 수 없을때 빈 객체를 반환합니다.
                 });
     }
 
